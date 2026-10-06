@@ -5,6 +5,26 @@ import { Link, Button } from "@heroui/react";
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const links = (
+    <>
+      <li>
+        <Link href="#">Features</Link>
+      </li>
+      <li>
+        <Link
+          href="#"
+          className="font-medium text-accent"
+          aria-current="page"
+        >
+          Dashboard
+        </Link>
+      </li>
+      <li>
+        <Link href="#">Pricing</Link>
+      </li>
+    </>
+  );
+
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-separator bg-background/70 backdrop-blur-lg">
       <header className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6">
@@ -40,46 +60,27 @@ export default function Navbar() {
             </svg>
           </button>
           <div className="flex items-center gap-3">
-      
             <p className="font-bold">ACME</p>
           </div>
         </div>
+
+        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-4 md:flex">
-          <li>
-            <Link href="#">Features</Link>
-          </li>
-          <li>
-            <Link href="#" className="font-medium text-accent" aria-current="page">
-              Dashboard
-            </Link>
-          </li>
-          <li>
-            <Link href="#">Pricing</Link>
-          </li>
+          {links}
         </ul>
+
+        {/* Desktop CTA */}
         <div className="hidden items-center gap-4 md:flex">
           <Link href="#">Login</Link>
           <Button>Sign Up</Button>
         </div>
       </header>
+
+      {/* Mobile Menu Dropdown */}
       {isMenuOpen && (
         <div className="border-t border-separator md:hidden">
           <ul className="flex flex-col gap-2 p-4">
-            <li>
-              <Link href="#" className="block py-2">
-                Features
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2 font-medium text-accent">
-                Dashboard
-              </Link>
-            </li>
-            <li>
-              <Link href="#" className="block py-2">
-                Pricing
-              </Link>
-            </li>
+            {links}
             <li className="mt-4 flex flex-col gap-2 border-t border-separator pt-4">
               <Link href="#" className="block py-2">
                 Login
